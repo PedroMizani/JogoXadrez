@@ -15,7 +15,5 @@
             Tabuleiro = tabuleiro;
             QtdeMovimentos = 0;
         }
-
-
     }
 }
