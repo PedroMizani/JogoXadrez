@@ -22,6 +22,11 @@
             QtdeMovimentos++;
         }
 
+        public void DecrementarQtdeMovimento()
+        {
+            QtdeMovimentos--;
+        }
+
 
         public bool ExisteMovimentosPossiveis()
         {
