@@ -52,6 +52,7 @@ namespace Xadrez_console
                     }
                 }
 
+
                 Tela.ImprimirTabuleiro(partida.Tab);
 
             }
