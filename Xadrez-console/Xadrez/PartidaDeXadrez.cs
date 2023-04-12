@@ -146,7 +146,7 @@ namespace Xadrez
                         posP = new Posicao(4,destino.Coluna);
                     }
 
-                    Tab.ColocarPeca(peao, posP);
+                    Tab.ColocarPeca(peao, posP); 
                 }
             }
 
@@ -156,6 +156,7 @@ namespace Xadrez
         public void RealizarJogada(Posicao origem, Posicao destino)
         {
 
+
             Peca Pecacapturada = ExecutaMovimento(origem, destino);
 
             if (EstaEmXeque(JogadorAtual))
@@ -163,6 +164,23 @@ namespace Xadrez
                 DesfazMovimento(origem, destino, Pecacapturada);
                 throw new TabuleiroException("Você não pode se colocar em xeque!");
             }
+
+            Peca p = Tab.peca(destino);
+
+            //#Jogada especial promocao
+
+            if (p is Peao)
+            {
+                if ((p.Cor == Cor.Branca && destino.Linha == 0) || (p.Cor == Cor.Preta && destino.Linha == 7))
+                {
+                    p = Tab.RetirarPeca(destino);
+                    pecas.Remove(p);
+                    Peca dama = new Dama(p.Cor, Tab);
+                    Tab.ColocarPeca(dama, destino);
+                    pecas.Add(dama);
+                }
+            }
+
 
             if (EstaEmXeque(Adversaria(JogadorAtual)))
             {
@@ -187,7 +205,7 @@ namespace Xadrez
 
 
 
-            Peca p = Tab.peca(destino);
+            
 
             // #Jogada especial En Passant
 
